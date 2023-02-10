@@ -19,11 +19,12 @@ steps:
     versionSource: 'spec' # 'spec' | 'fromFile'. Required. Source of version. Default: spec.
     versionSpec: '12.x'
 
-- task: Bash@3
-  displayName: 'Installing Gulp'
+- task: Npm@1
+  displayName: 'Run npm install'
   inputs:
-    script: |
-      npm install gulp
+    command: custom
+    customCommand: install gulp
+    verbose: false
 
 - task: Npm@1
   displayName: 'Run npm install'
