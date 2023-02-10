@@ -17,9 +17,19 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+- task: DotNetCoreInstaller@1
+  inputs:
+    packageType: 'sdk' # 'runtime' | 'sdk'. Required. Package to install. Default: sdk.
+    version: 'latest' # string. Required. Version. Default: 2.2.x.
+    #includePreviewVersions: false # boolean. Include Preview Versions. Default: false.
+  # Advanced
+    #installationPath: '$(Agent.ToolsDirectory)/dotnet' # string. Path To Install .Net Core. Default: $(Agent.ToolsDirectory)/dotnet.
+    #performMultiLevelLookup: false # boolean. Perform Multi Level Lookup. Default: false.
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+
 
 - task: VSBuild@1
   inputs:
